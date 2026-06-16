@@ -172,15 +172,15 @@ def main():
     tools, prompt = create_multihop_react_agent()
 
     # Example 1: Multi-hop question
-    print("EXAMPLE 1: Multi-Hop Question")
-    print("=" * 70)
-    question1 = "What is the capital of France and what is its population?"
-    simulate_react_execution(question1, tools)
+    # print("EXAMPLE 1: Multi-Hop Question")
+    # print("=" * 70)
+    # question1 = "What is the capital of France and what is its population?"
+    # simulate_react_execution(question1, tools)
 
     # Example 2: Multi-hop question
     print("EXAMPLE 2: Another Multi-Hop Question")
     print("=" * 70)
-    question2 = "What is the Eifel tower located and describe that location?"
+    question2 = "Where is the eiffel tower located and describe that location?"
     simulate_react_execution(question2, tools)
 
 if __name__ == "__main__":
