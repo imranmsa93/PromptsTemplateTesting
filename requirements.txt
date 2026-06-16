@@ -1,3 +1,6 @@
+
+###  GENERAL FRAMEWORKS ###
+
 langchain
 langchain-google-genai
 google-generativeai
@@ -13,3 +16,13 @@ colorama
 
 # python-dotenv>=1.0.0
 # pydantic>=2.0.0
+
+
+###  MULTIPE HOP RAG REASONING ###
+langchain>=0.2.0
+langchain-core>=0.2.1
+langchain-community>=0.2.0
+python-dotenv>=1.0.1
+tqdm>=4.66.1
+numpy>=1.26.0
+
