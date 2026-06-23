@@ -3,6 +3,10 @@ from langchain_core.documents import Document
 from collections import defaultdict
 from typing import List, Dict
 import re
+from dotenv import load_dotenv
+from langchain_google_genai import ChatGoogleGenerativeAI
+import os
+from langchain_core.output_parsers import StrOutputParser
 
 # STEP 1: Create Document Store (Simulated Vector Store)
 
@@ -103,6 +107,36 @@ def generate_query_variations_simple(original_query: str) -> List[str]:
     print()
     return variations
 
+def generate_query_variations(original_query: str, llm: ChatGoogleGenerativeAI) -> List[str]:
+
+    print(f"ORIGINAL QUERY: '{original_query}'\n")
+    print("Generating query variations using LLM...\n")
+
+    chain = (
+        QUERY_EXPANSION_PROMPT
+        | llm
+        | StrOutputParser()
+    )
+
+    response = chain.invoke(
+        {"original_query": original_query}
+    )
+
+    generated_queries = [
+        q.strip()
+        for q in response.split("\n")
+        if q.strip()
+    ]
+
+    variations = [original_query] + generated_queries
+
+    for i, query in enumerate(variations, start=1):
+        print(f"{i}. {query}")
+
+    print()
+
+    return variations
+
 
 # STEP 3: Multi-Query Retrieval
 
@@ -187,10 +221,21 @@ def display_final_ranking(
 # MAIN DEMONSTRATION
 
 def main():
+
+    # Load API Key
+    load_dotenv()
+    GEMINI_API_KEY = os.getenv("GOOGLE_API_KEY")
+
+    # Initialize LLM
+    model = ChatGoogleGenerativeAI(
+        model="gemini-2.5-flash",
+        api_key=GEMINI_API_KEY
+    )
     doc_store = SimpleDocumentStore(DOCUMENTS)
     multi_retriever = MultiQueryRetrieverDemo(doc_store)
     user_query = "How does machine learning work?"
-    query_variations = generate_query_variations_simple(user_query)
+    #query_variations = generate_query_variations_simple(user_query)
+    query_variations = generate_query_variations(user_query,model)
     all_results = multi_retriever.retrieve_for_all_queries(query_variations, top_k=3)
 
     rrf_results = FusionStrategies.reciprocal_rank_fusion(all_results)
