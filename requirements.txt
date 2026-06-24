@@ -1,12 +1,12 @@
 
 ###  GENERAL FRAMEWORKS ###
 
-langchain
-langchain-google-genai
-google-generativeai
-python-dotenv
-langchain-core
-colorama
+# langchain
+# langchain-google-genai
+# google-generativeai
+# python-dotenv
+# langchain-core
+# colorama
 
 # langchain>=0.2.0
 # langchain-core>=0.2.0
