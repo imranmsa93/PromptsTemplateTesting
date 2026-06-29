@@ -47,10 +47,10 @@ model = ChatGoogleGenerativeAI(
 #     model="embedding-001"
 # )
 embeddings = GoogleGenerativeAIEmbeddings(
-    model="models/text-embedding-004"
+    model="models/gemini-embedding-001"
 )
 #emb = GoogleGenerativeAIEmbeddings(model="text-embedding-004")
-print(embeddings.embed_query("hello"))
+#print(embeddings.embed_query("hello"))
 
 # =========================
 # 2. KNOWLEDGE BASE

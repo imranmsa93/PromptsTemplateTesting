@@ -102,7 +102,7 @@ def build_llm_and_vs():
         raise RuntimeError("GOOGLE_API_KEY not set in .env")
 
     llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.2)
-    emb = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
+    emb = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
 
     docs = [Document(page_content=text) for text in ATLAS_DOCS]
     vs = FAISS.from_documents(docs, emb)
