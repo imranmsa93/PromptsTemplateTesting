@@ -23,6 +23,7 @@ from langchain_google_genai import (
 from langchain_chroma import Chroma
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
+from langchain_community.vectorstores import FAISS
 
 # =========================
 # 1. LOAD ENV + LLM
@@ -36,6 +37,8 @@ model = ChatGoogleGenerativeAI(
     temperature=0
 )
 
+
+
 # embeddings = GoogleGenerativeAIEmbeddings(
 #     model="text-embedding-001",
 #     google_api_key=os.getenv("GOOGLE_API_KEY")
@@ -44,10 +47,10 @@ model = ChatGoogleGenerativeAI(
 #     model="embedding-001"
 # )
 embeddings = GoogleGenerativeAIEmbeddings(
-    model="models/text-embedding-001"
+    model="models/text-embedding-004"
 )
-emb = GoogleGenerativeAIEmbeddings(model="text-embedding-004")
-print(emb.embed_query("hello"))
+#emb = GoogleGenerativeAIEmbeddings(model="text-embedding-004")
+print(embeddings.embed_query("hello"))
 
 # =========================
 # 2. KNOWLEDGE BASE
